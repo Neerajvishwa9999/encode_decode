@@ -1,33 +1,37 @@
+from art import logo
+print (logo)
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
-text = input("Type your message:\n").lower()
-shift = int(input("Type the shift number:\n"))
-
-
-def ceaser(plain_text,shift_amount,direction_code):
-  
-  if direction == "encode":
-    empty_text=""
-    for letter in plain_text:
-      position =alphabet.index(letter)
-      new_position = position + shift_amount
-      empty_text += alphabet[new_position]
-    print(f"The encoded text is {empty_text}")
-
-  elif direction == "decode":
-    empty_text =""
-    for letter in plain_text:
-      position = alphabet.index(letter)
-      new_position = position - shift_amount
-      empty_text += alphabet[new_position]
-    print(f"The decoded text is {empty_text}")  
-
-ceaser(plain_text = text,shift_amount = shift,direction_code =direction)
+def caesar(start_text, shift_amount, cipher_direction):
+  end_text = ""
+  if cipher_direction == "decode":
+    shift_amount *= -1
+  for char in start_text:
+    if char in alphabet:
+      
     
-  
-  
-  
-  
+      position = alphabet.index(char)
+      new_position = position + shift_amount
+      end_text += alphabet[new_position]
+    else:
+      end_text += char
+  print(f"Here's the {cipher_direction}d result: {end_text}")
 
-
+ 
+Run_again = True
+while Run_again is True:
+  
+  direction = input("Type 'encode' to encrypt, type 'decode' to   decrypt:\n")
+  text = input("Type your message:\n").lower()
+  shift = int(input("Type the shift number:\n"))
+  
+  
+  shift = shift % 26
+  
+  caesar(start_text=text, shift_amount=shift,cipher_direction=direction)
+  Run_input = input("type 'yes' if you want to continue & 'no' if you dont want to continue ")
+  if (Run_input == "no"):
+    Run_again = False
+    print ("Good bye")
+  else:
+    Run_again = True
